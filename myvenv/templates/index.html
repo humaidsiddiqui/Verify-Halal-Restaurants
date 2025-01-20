@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}" >
+    <title>Restaurant Information Form</title>
+</head>
+<body>
+    <h1>VERIFY HALAL RESTURNATS IN VANCOUVER</h1>
+    <form action="/submit" method="post" action="C:\Users\User\OneDrive\Desktop\FlaskPostgresql\myvenv\templates\success.html">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Email Address:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="phone">Phone Number:</label><br>
+        <input type="tel" id="phone" name="phone" required><br><br>
+
+        <label for="restaurant_name">Restaurant Name:</label><br>
+        <input type="text" id="restaurant_name" name="restaurant_name" required><br><br>
+
+        <label for="restaurant_address">Restaurant Address:</label><br>
+        <input type="text" id="restaurant_address" name="restaurant_address" required><br><br>
+
+        <label for="food_type">Does the restaurant serve halal or haram food?</label><br>
+        <input type="radio" id="halal" name="choice" value="halal" required>
+        <label for="halal">Halal</label><br>
+        <input type="radio" id="haram" name="choice" value="haram" required>
+        <label for="haram">Haram</label><br><br>
+
+
+
+        <label for="comments">Additional Comments:</label><br>
+        <textarea id="comments" name="comments" rows="4" cols="50"></textarea><br><br>
+
+        <button type="submit" name="submitf" value="register" class="btn_dark_grey" onclick="window.open('/success.html');">Submit</button>
+    </form>
+</body>
+</html>
