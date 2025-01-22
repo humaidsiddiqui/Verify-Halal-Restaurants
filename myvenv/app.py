@@ -8,7 +8,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 
-class flaskdb(db.Model):
+class flaskdb(db.Model): #creating schema fro your table in postgresql 
     __tablename__ = 'flaskdb'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -18,7 +18,7 @@ class flaskdb(db.Model):
     restaurant_address= db.Column(db.String(100), nullable=False)
     choice = db.Column(db.String(50), nullable=False)
     comments= db.Column(db.String(100), nullable=False)
-    def __init__(self,name,email,phone,restaurant_name,restaurant_address,choice,comments):
+    def __init__(self,name,email,phone,restaurant_name,restaurant_address,choice,comments): #taking inputs from the user using __init__ method 
         self.name = name
         self.email = email
         self.phone = phone
@@ -33,7 +33,7 @@ def index():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    if request.method == 'POST':
+    if request.method == 'POST': #storing the data taken from user to in your postgresql coloumns
         print("Received form data ",request.form)
         name = request.form['name']
         email = request.form['email']
@@ -45,16 +45,18 @@ def submit():
 
         print(f"Received and Inserting: {name}, {email}, {phone}, {restaurant_name}, {restaurant_address}, {choice}, {comments}")
 
-        # Result=db.session.query(flaskdb).filter_by(email=email).first()
-        # for result in Result:
-        #     if result.email == email:
-        #         print("Email already exists",result.email)
-        #         print(result.email)
+        
         data = flaskdb(name=name,email=email,phone=phone,restaurant_name=restaurant_name,restaurant_address=restaurant_address,choice=choice,comments=comments)
         db.session.add(data)
         db.session.commit()
         print('Data Inserted Successfully!')
-        return render_template('success.html')
+
+        # fetch data using postgresql
+        fetch=db.session.query(flaskdb)
+        for f in fetch:
+            print(f.name) #printing the name of the user as the acknowldgement.
+
+        # return render_template('success.html', data=name)
     
 
 
