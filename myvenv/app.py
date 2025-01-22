@@ -56,7 +56,7 @@ def submit():
         for f in fetch:
             print(f.name) #printing the name of the user as the acknowldgement.
 
-        # return render_template('success.html', data=name)
+        return render_template('success.html', data=name)
     
 
 
